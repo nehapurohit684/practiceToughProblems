@@ -1,3 +1,8 @@
+package general;
+
+import javafx.util.Pair;
+
+import java.nio.file.Path;
 import java.util.*;
 
 public class BFSGraph {
@@ -22,6 +27,8 @@ public class BFSGraph {
             adjList.get(edge[0]).add(edge[1]);
             adjList.get(edge[1]).add(edge[0]);
         }
+        Map<Integer,Boolean> visited1 = new HashMap<>();
+        visited1.containsKey(1);
 
         int connected =0;
         for (int i = 0; i <n ; i++) {
@@ -111,7 +118,7 @@ public class BFSGraph {
         return false;
     }
 
-    private static boolean helperBipartite(int node, boolean[] visited, int[] parent,int[] level,int[][] adjList) {
+    private static boolean helperBipartite(int node, boolean[] visited, int[] level,int[][] adjList) {
 
         Queue<Integer> nodes = new LinkedList<>();
         visited[node] =true;
@@ -125,7 +132,7 @@ public class BFSGraph {
                         level[j]=level[temp]+1;
                         nodes.add(j);
                     }else{
-                        if (j!=parent[temp] && level[j]==level[temp]) return false;
+                        if (level[j]==level[temp]) return false;
                     }
                 }
             }
@@ -134,17 +141,49 @@ public class BFSGraph {
 
     public boolean isBipartite(int[][] graph) {
         boolean [] visited = new boolean[graph.length];
-        int[] parent = new int[graph.length];
-        Arrays.fill(parent,-1);
         int[] level = new int[graph.length];
-        Arrays.fill(parent,-1);
 
         for (int i = 0; i <graph.length ; i++) {
             if (!visited[i]) {
-                if (!helperBipartite(i, visited, parent,level, graph)) return false;
+                if (!helperBipartite(i, visited, level, graph)) return false;
             }
         }
         return true;
 
     }
+    public int numIslands(char[][] grid) {
+        int count =0;
+        for (int row = 0; row < grid.length ; row++) {
+            for (int col = 0; col < grid[0].length ; col++) {
+                if(grid[row][col] !='0'){
+                    dfs(row,col,grid);
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private void dfs(int x, int y, char[][] grid) {
+        grid[x][y]='0';
+        if(x<0 || x>grid.length || y<0 || y>grid[0].length) return;
+        if(x-1>=0) dfs(x-1,y,grid);
+        if(y-1>=0) dfs(x,y-1,grid);
+        if(x+1<grid.length) dfs(x+1,y,grid);
+        if(y+1<grid[0].length) dfs(x,y+1,grid);
+
+    }
+
+    private List<Pair<Integer, Integer>> getNeigbours(int x, int y,char[][] grid) {
+        List<Pair<Integer, Integer>> results = new ArrayList<>();
+
+        if(x-1>=0) results.add(new Pair(x-1,y));
+        if(y-1>=0) results.add(new Pair(x,y-1));
+        if(x+1<grid.length) results.add(new Pair(x+1,y));
+        if(y+1<grid[0].length) results.add(new Pair(x,y+1));
+
+        return results;
+    }
+
+
 }

@@ -1,3 +1,5 @@
+package general;
+
 import java.util.stream.IntStream;
 
 public class DutchFlag {

@@ -1,3 +1,5 @@
+package general;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -165,5 +167,7 @@ public class Subset {
         }
         return result[0];
     }
+
+
 
 }

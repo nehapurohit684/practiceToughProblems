@@ -1,3 +1,5 @@
+package general;
+
 public class GroupNumbers {
 
     public static void main(String[] args) {
