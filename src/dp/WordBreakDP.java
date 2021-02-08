@@ -19,11 +19,11 @@ public class WordBreakDP {
         for (int i=1;i<chars.length+1;i++){
             //j iterate over substring of all length from 0 to i
             for (int j = 0; j < i; j++) {
-                if(wordDict.contains(s.substring(j,i)) && table[j]){
-                    table[i]= true;
+                //if you check first table[j] then it will make sure you are not doing repetitive work.
+                if (table[j] && wordDict.contains(s.substring(j, i))) {
+                    table[i] = true;
                 }
             }
-
         }
         return table[chars.length];
     }
