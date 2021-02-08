@@ -1,4 +1,4 @@
-package general;
+package dp;
 
 import java.util.Arrays;
 
@@ -21,6 +21,7 @@ public class RodCuttingDP {
         for(int i=2; i<=n; i++){
             for(int j=1; j<i; j++){
                 long temp  = table[j]*(i-j) < (j * (i-j))? j*(i-j) :table[j]*(i-j) ;
+                //making sure each piece of size i is optimal
                 table[i] = temp>table[i] ? temp : table[i];
             }
         }
