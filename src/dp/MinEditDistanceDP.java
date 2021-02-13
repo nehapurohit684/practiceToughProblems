@@ -18,6 +18,7 @@ public class MinEditDistanceDP {
                 if (word1.charAt(i - 1) != word2.charAt(j - 1)) {
                     memo[i][j] = 1 + Math.min(Math.min(memo[i][j - 1], memo[i - 1][j]), memo[i - 1][j - 1]);
                 } else
+                    //if chars at ith and jth position is equal that means cost for i,j is eq to cost of i-1,j-1
                     memo[i][j] = memo[i - 1][j - 1];
             }
         }

@@ -31,4 +31,26 @@ public class LongestCommonSequence {
     public static void main(String[] args) {
         System.out.println(longestCommonSubsequence("nest", "test"));
     }
+
+    static long countWaysToClimb(int[] steps, int n) {
+
+        long[] memo = new long[n + 1];
+
+        for (int j = 0; j < steps[0]; j++) {
+            memo[j] = 0;
+        }
+
+        for (int i = 0; i < steps.length; i++) {
+            memo[steps[i]] = 1;
+        }
+
+        for (int k = (steps[0] + 1); k < n + 1; k++) {
+            for (int i = 0; i < steps.length; i++) {
+                memo[k] = memo[k] + memo[n - steps[i]];
+            }
+        }
+
+        return memo[n];
+
+    }
 }
