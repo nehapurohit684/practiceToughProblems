@@ -47,4 +47,36 @@ public class CourseScheduleGraphI {
         results.add(node);
         return false;
     }
+
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        for (int i = 0; i < numCourses; i++) {
+            graph.put(i, new ArrayList<>());
+        }
+
+        for (int[] pre : prerequisites) {
+            graph.get(pre[1]).add(pre[0]);
+        }
+
+        boolean[] visited = new boolean[numCourses];
+        Arrays.fill(visited, false);
+        int[] depTime = new int[numCourses];
+        Arrays.fill(depTime, -1);
+        int time = 0;
+        for (int i = 0; i < numCourses; i++) {
+            if (!visited[i]) if (dfs(i, visited, depTime, graph, time)) return false;
+        }
+        return true;
+    }
+
+    private boolean dfs(int i, boolean[] visited, int[] depTime, Map<Integer, List<Integer>> graph, int time) {
+        visited[i] = true;
+        for (Integer neighbour : graph.get(i)) {
+            if (!visited[neighbour]) if (dfs(neighbour, visited, depTime, graph, time)) return true;
+            else if (depTime[neighbour] == -1) return true;
+        }
+        depTime[i] = time++;
+        return false;
+    }
 }
