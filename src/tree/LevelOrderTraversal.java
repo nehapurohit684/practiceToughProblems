@@ -24,6 +24,26 @@ public class LevelOrderTraversal {
         return results;
     }
 
+    public List<Integer> levelOrderLeftMost(TreeNode root) {
+        List<Integer> results = new ArrayList<>();
+        if (root == null) return results;
+        Queue<TreeNode> list = new LinkedList<>();
+        list.add(root);
+        while (!list.isEmpty()) {
+            int size = list.size();
+            List<Integer> resultsList = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = list.poll();
+                resultsList.add(node.val);
+                if (node.left != null) list.add(node.left);
+                if (node.right != null) list.add(node.right);
+            }
+            results.add(resultsList.get(0));
+        }
+        return results;
+    }
+
+
     public List<List<Integer>> levelOrderZigZag(TreeNode root) {
         List<List<Integer>> results = new ArrayList<>();
         if (root == null) return results;
@@ -131,6 +151,5 @@ public class LevelOrderTraversal {
         }
     }
 
-    ;
 
 }
