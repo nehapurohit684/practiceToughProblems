@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class BFSTree {
@@ -34,6 +35,7 @@ public class BFSTree {
             //you can add here for loop for number of nodes in queue at start to do level traversing
             // Within a for loop nodes at same level are processed.
             //you can process node value here like add this in results
+
             if (current.left != null) {
                 list.offer(current.left);
             }

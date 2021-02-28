@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 1. Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.
+ * 1. Given the root of a binary tree and an integer targetSum,
+ * return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.
  * <p>
  * A leaf is a node with no children.
  * 2. Given the root of a binary tree and an integer targetSum, return all root-to-leaf paths where each path's sum equals targetSum.
+ * 3. Find the number of paths that sum to a given value.The path does not need to start or end at the root or a leaf,
+ * but it must go downwards-- Hint: At any node you need value of all parents and see if the sum of all parents+ sum = target
  */
-public class DFSPathSum {
+public class TopDownDFSPathSum {
 
     public boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null) return false;
@@ -66,6 +69,29 @@ public class DFSPathSum {
             helperDFS2(root.right, slate, results, targetSum - root.val);
             slate.remove(slate.size() - 1);
         }
+    }
+
+    public int pathSumCount(TreeNode root, int sum) {
+
+        int[] result = new int[1];
+        helperDFS3(root, sum, new ArrayList<>(), result);
+        return result[0];
+    }
+
+    private void helperDFS3(TreeNode root, int sum, List<Integer> slate, int[] result) {
+        slate.add(root.val);
+        int sumSoFar = 0;
+        //you are maintaining sub Array sum from node to its parent
+        //checking sum of current node and its subaaray from node to any of its parent = target
+        for (int i = slate.size() - 1; i > 0; i--) {
+            sumSoFar += slate.get(i);
+            if (sum == sumSoFar) {
+                result[0]++;
+            }
+        }
+        if (root.left != null) helperDFS3(root.left, sum, slate, result);
+        if (root.right != null) helperDFS3(root.right, sum, slate, result);
+        slate.remove(slate.size() - 1);
     }
 
     //Definition for a binary tree node.
