@@ -1,6 +1,8 @@
 package tree;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ import java.util.List;
  * 3. Find the number of paths that sum to a given value.The path does not need to start or end at the root or a leaf,
  * but it must go downwards-- Hint: At any node you need value of all parents and see if the sum of all parents+ sum = target
  */
-public class TopDownDFSPathSum {
+public class DFSPathSum {
 
     public boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null) return false;
@@ -92,6 +94,43 @@ public class TopDownDFSPathSum {
         if (root.left != null) helperDFS3(root.left, sum, slate, result);
         if (root.right != null) helperDFS3(root.right, sum, slate, result);
         slate.remove(slate.size() - 1);
+    }
+
+    /**
+     * 124 : Given the root of a binary tree, return the maximum path sum of any path.
+     * Here we would have to use Bottom UP DFS as each child needs to return max path sum to its parents passes through child
+     *
+     * @param root
+     * @return
+     */
+    public int maxPathSum(TreeNode root) {
+
+        int[] result = new int[1];
+        Arrays.fill(result, Integer.MIN_VALUE);
+        helperDFSBottomUp(root, result);
+        return result[0];
+    }
+
+    /*
+    For every Node Local solution is to find maxpathsum via that node and maxpath for parent.
+    MaxPath for parent is = Max(node, node+right, node+left)
+    MaxPathSumViaNode is max(node.val,node+left,node+right,node+left+right)
+     */
+    private int helperDFSBottomUp(TreeNode root, int[] result) {
+        int maxPathSumViaMe = root.val;
+        int leftpathsum = 0, rightpathsum = 0;
+        //recursive case
+        if (root.left != null) {
+            leftpathsum = helperDFSBottomUp(root.left, result);
+
+        }
+        if (root.right != null) {
+            rightpathsum = helperDFSBottomUp(root.right, result);
+        }
+        maxPathSumViaMe = Math.max(Math.max(root.val, leftpathsum + root.val), Math.max(rightpathsum + root.val, leftpathsum + rightpathsum + root.val));
+        result[0] = Math.max(maxPathSumViaMe, result[0]);
+
+        return Math.max(Math.max(leftpathsum + root.val, rightpathsum + root.val), root.val);
     }
 
     //Definition for a binary tree node.

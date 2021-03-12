@@ -84,4 +84,31 @@ public class DFSUniValueBinaryTree {
             this.right = right;
         }
     }
+
+    public int longestUnivaluePath(TreeNode root) {
+        if (root == null) return 0;
+        int[] result = new int[1];
+        helperDFSForPath(root, result);
+        return result[0];
+    }
+
+    private int helperDFSForPath(TreeNode root, int[] result) {
+        int path = 0;
+        if (root.left == null && root.right == null) {
+            return 0;
+        }
+
+        int left = 0, right = 0;
+        if (root.left != null) {
+            int leftH = helperDFSForPath(root.left, result);
+            if (root.val == root.left.val) left = leftH + 1;
+        }
+        if (root.right != null) {
+            int rightH = helperDFSForPath(root.right, result);
+            if (root.val == root.right.val) right = rightH + 1;
+        }
+        path = Math.max(left + right, path);
+        result[0] = Math.max(result[0], path);
+        return Math.max(left, right);
+    }
 }
