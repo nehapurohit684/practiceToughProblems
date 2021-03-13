@@ -25,7 +25,7 @@ public class TopDownDFSUpsideDownTree {
     public TreeNode upsideDownBinaryTree(TreeNode root) {
 
         if (root == null) return null;
-        helperDFS(root, null, root.right);
+        helperDFS(root, null, null);
         return result[0];
     }
 

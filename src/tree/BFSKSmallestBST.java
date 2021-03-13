@@ -51,4 +51,28 @@ public class BFSKSmallestBST {
         return bfsTree(root, k);
 
     }
+
+
+    public int kthSmallest(TreeNode root, int k) {
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(k, Collections.reverseOrder());
+        helperDFS(root, maxHeap, k);
+
+        return maxHeap.poll();
+    }
+
+    private void helperDFS(TreeNode root, PriorityQueue<Integer> maxHeap, int k) {
+
+        if (root != null) {
+            helperDFS(root.left_ptr, maxHeap, k);
+        }
+        if (maxHeap.size() < k) {
+            maxHeap.add(root.val);
+        } else {
+            maxHeap.add(root.val);
+            maxHeap.poll();
+        }
+        if (root.right_ptr != null) {
+            helperDFS(root.right_ptr, maxHeap, k);
+        }
+    }
 }
