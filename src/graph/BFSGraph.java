@@ -29,12 +29,13 @@ public class BFSGraph {
         Queue<Node> list = new LinkedList<>();
         list.add(node);
         //main difference between Trr and Graph BFS
-        visited.put(node, true);
         while (!list.isEmpty()) {
             Node current = list.poll();
+            visited.put(current, true);
             for (Node neighbour : current.neighbors) {
-                if (!visited.get(neighbour))
+                if (visited.get(neighbour) != null) {
                     list.offer(neighbour);
+                }
             }
         }
     }

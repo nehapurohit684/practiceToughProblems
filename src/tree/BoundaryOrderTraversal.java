@@ -26,6 +26,9 @@ public class BoundaryOrderTraversal {
 
     /**
      * Leetcode 545
+     * Create Leftboundary by going only in left direction , putting a current node to refer each left child and add it in leftBoudary list .
+     * Similarly Create RightBoundary by pointing current to right and keep going in right untill current is null. From each of these list make sure to remove last element .
+     * Create a list for leaves and use DFS to find this list. At last left+Leaves+right will give you boundary.
      *
      * @param root
      * @return
