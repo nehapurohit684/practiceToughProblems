@@ -1,8 +1,6 @@
 package tree;
 
 
-import java.lang.reflect.Array;
-import java.time.temporal.Temporal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -211,5 +209,6 @@ public class TreeConstruction {
         return root;
 
     }
+
 
 }
