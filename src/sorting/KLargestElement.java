@@ -1,7 +1,5 @@
 package sorting;
 
-import org.ietf.jgss.GSSManager;
-
 import java.util.PriorityQueue;
 import java.util.Random;
 
@@ -48,6 +46,31 @@ public class KLargestElement {
         int temp = nums[smallInd];
         nums[smallInd] = nums[pivotInd];
         nums[pivotInd] = temp;
+    }
+
+    PriorityQueue<Integer> pq = new PriorityQueue<>();
+    int k;
+
+    public KLargestElement(int k, int[] nums) {
+        this.k = k;
+        for (int i : nums) {
+            if (pq.size() >= k) {
+                pq.add(i);
+                pq.poll();
+            } else {
+                pq.add(i);
+            }
+        }
+    }
+
+    public int add(int val) {
+        if (pq.size() >= k && pq.peek() <= val) {
+            pq.add(val);
+            pq.poll();
+        } else if (pq.size() < k) {
+            pq.add(val);
+        }
+        return pq.peek();
     }
 
 }

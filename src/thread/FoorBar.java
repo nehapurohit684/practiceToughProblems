@@ -9,7 +9,7 @@ public class FoorBar {
                 bar();
             }
         };
-        t.start();//t.start makes sure a new tread is created.
+       // t.start();//t.start makes sure a new tread is created.
         System.out.println(t.getName());
         t.run();//t.run makes sure run will be called as normal method
         System.out.println(t.getName());

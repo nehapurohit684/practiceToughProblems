@@ -1,5 +1,8 @@
 package sorting;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class SortArray {
@@ -33,6 +36,33 @@ public class SortArray {
         int temp = nums[smallInd];
         nums[smallInd] = nums[pivotInd];
         nums[pivotInd] = temp;
+    }
+
+    /**
+     * leetcode 697
+     *
+     * @param nums
+     * @return
+     */
+    public int findShortestSubArray(int[] nums) {
+
+        Map<Integer, Integer> count = new HashMap<>(), left = new HashMap<>(), right = new HashMap<>();
+//left and right to keep track of index and count to track max degree calculation
+        for (int i = 0; i < nums.length; i++) {
+            count.put(nums[i], count.getOrDefault(nums[i], 0).intValue() + 1);
+
+            if (!left.containsKey(nums[i])) left.put(nums[i], i);
+            right.put(nums[i], i);
+        }
+
+        int degree = Collections.max(count.values());
+        int minSizeofArray = nums.length;
+        for (int i = 0; i < nums.length; i++) {
+            if (count.get(nums[i]) == degree) {
+                minSizeofArray = Math.min(minSizeofArray, right.get(nums[i]) - left.get(nums[i]) + 1);
+            }
+        }
+        return minSizeofArray;
     }
 
 }

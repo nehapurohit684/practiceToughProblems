@@ -1,4 +1,4 @@
-package general;
+package sorting;
 
 import java.util.*;
 
@@ -107,8 +107,8 @@ public class SortClass {
                 array.set(smallInd, array.get(i));
                 array.set(i, temp);
             }
-
         }
+
         array.set(start, array.get(smallInd));
         array.set(smallInd, pivot);
         quickSort(array, start, smallInd-1);

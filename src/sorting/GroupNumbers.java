@@ -1,4 +1,4 @@
-package general;
+package sorting;
 
 public class GroupNumbers {
 
