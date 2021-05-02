@@ -1,5 +1,7 @@
 package design;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.*;
 
 /**
@@ -81,6 +83,20 @@ public class TweetCounts {
         }
         return res;
     }
+    /* ... other methods and variables here ... */
 
+    // Count the frequency of each character in a text file, for use in (human) language detection.
+    public static int[] getCharacterCounts(String filename) throws Exception {
+        File fileHandle = new File(filename);
+        FileInputStream inputStream = new FileInputStream(fileHandle);
+        byte[] byteArray = new byte[1];
+        int readBytes = 0;
+        int[] characterCounts = new int[256];
+        while ((readBytes = inputStream.read(byteArray)) != -1) {
+            int byteValue = byteArray[0] & 0xFF; // Convert signed byte to 0-255 value
+            characterCounts[byteValue]++;
+        }
+        return characterCounts;
+    }
 }
 
