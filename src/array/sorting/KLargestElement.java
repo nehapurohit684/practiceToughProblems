@@ -1,4 +1,4 @@
-package sorting;
+package array.sorting;
 
 import java.util.PriorityQueue;
 import java.util.Random;

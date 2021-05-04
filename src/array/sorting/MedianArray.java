@@ -1,6 +1,4 @@
-package sorting;
-
-import java.util.ArrayList;
+package array.sorting;
 
 public class MedianArray {
 

@@ -1,6 +1,4 @@
-package sorting;
-
-import java.util.stream.IntStream;
+package array.sorting;
 
 public class DutchFlag {
 

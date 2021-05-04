@@ -1,6 +1,4 @@
-package sorting;
-
-import java.util.Arrays;
+package array.sorting;
 
 public class MergeArray {
 

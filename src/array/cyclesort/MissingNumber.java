@@ -1,4 +1,4 @@
-package sorting.cyclesort;
+package array.cyclesort;
 
 import java.util.ArrayList;
 import java.util.List;

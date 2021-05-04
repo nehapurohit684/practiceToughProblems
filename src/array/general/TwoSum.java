@@ -1,4 +1,4 @@
-package sorting;
+package array.general;
 
 import java.util.Arrays;
 import java.util.HashMap;
