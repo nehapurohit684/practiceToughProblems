@@ -105,4 +105,41 @@ public class MovingAverage {
         //return global ans
         return point;
     }
+
+    /**
+     * 1052. Grumpy Bookstore Owner
+     * Hint: For each window size X, find how many max customers are gumpy ,i.e maximum sum of fixed window X where grumpy[] =1.
+     *
+     * @param customers
+     * @param grumpy
+     * @param X
+     * @return
+     */
+    public int maxSatisfied(int[] customers, int[] grumpy, int X) {
+
+        int numSatisfied = 0;
+        int numAngry = 0;
+        for (int i = 0; i < customers.length; i++) {
+            if (grumpy[i] == 0) {
+                numSatisfied += customers[i];
+            }
+        }
+        for (int i = 0; i < X; i++) {
+            if (grumpy[i] == 1) {
+                numAngry += customers[i];
+            }
+        }
+        int globalMaxAngry = numAngry;
+        for (int i = X; i < customers.length; i++) {
+            if (grumpy[i] == 1) {
+                numAngry += customers[i];
+            }
+            if (grumpy[i - X] == 1) {
+                numAngry -= customers[i - X];
+            }
+            globalMaxAngry = Math.max(numAngry, globalMaxAngry);
+        }
+        return globalMaxAngry + numSatisfied;
+    }
+
 }
