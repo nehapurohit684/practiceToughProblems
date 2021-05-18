@@ -10,7 +10,8 @@ public class LetterCasePermutation {
 
     /**
      * 784. Letter Case Permutation
-     * You could create slate as string unlike below code that way you could use immutable slate but it increase space used
+     * You could create slate as string unlike below code
+     * that way you could use immutable slate but it increase space used
      *
      * @param S
      * @return

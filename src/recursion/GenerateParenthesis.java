@@ -6,7 +6,8 @@ import java.util.List;
 public class GenerateParenthesis {
     /**
      * Leetcode 22
-     * First create all possible bracket combination , it would be twice the number one of opening bracket and one for closing
+     * First create all possible bracket combination ,
+     * it would be twice the number one of opening bracket and one for closing
      * then see which ones are valid using valid funciton
      *
      * @param n
@@ -32,7 +33,8 @@ public class GenerateParenthesis {
 
     /**
      * this is one is simpler solution where we start with left and right counter and
-     * Any time we see if right is more that means ) bracket is more in string than ( we will end up with bad combination so we back track.
+     * Any time we see if right is more that means ) bracket is more in string
+     * than  we will end up with bad combination so we back track.
      *
      * @param n
      * @param left

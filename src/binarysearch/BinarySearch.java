@@ -1,5 +1,7 @@
 package binarysearch;
 
+import java.util.List;
+
 public class BinarySearch {
 
     /**
@@ -105,4 +107,43 @@ public class BinarySearch {
         }
         return letters[start % letters.length];
     }
+
+    /**
+     * 1428. Leftmost Column with at Least a One
+     * Binary search for each row
+     *
+     * @param binaryMatrix
+     * @return
+     */
+    public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
+
+        int row = binaryMatrix.dimensions().get(0);
+        int col = binaryMatrix.dimensions().get(1);
+        int leftMostCol = col;
+        ;
+        for (int i = 0; i < row; i++) {
+            int start = 0;
+            int end = col - 1;
+            while (start <= end) {
+                int mid = start + (end - start) / 2;
+                if (binaryMatrix.get(i, mid) == 0) {
+                    start = mid + 1;
+                } else end = mid - 1;
+            }
+            start = start >= col ? col - 1 : start;
+            if (binaryMatrix.get(i, start) == 1) {
+                leftMostCol = Math.min(leftMostCol, start);
+            }
+        }
+
+        return leftMostCol == col ? -1 : leftMostCol;
+    }
+
+    interface BinaryMatrix {
+        public int get(int row, int col);
+
+        public List<Integer> dimensions();
+    }
+
+    ;
 }

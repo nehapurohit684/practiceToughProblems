@@ -19,10 +19,12 @@ public class NQueens {
     }
 
     /**
-     * Slate here is telling the column number in each row so slate[0] tells that in row 0 we put Queen in col slate[0]
-     * Rather than keeping nyn slate we keep only n size slate
+     * Slate here is telling the column number in each row so slate[0] tells that
+     * in row 0 we put Queen in col slate[0]
+     * Rather than keeping n*n slate we keep only n size slate
      * we select Queen's place in each row with each recursive call and
-     * with each addition of new queen in each recursive call ,  we check if its not in conflict if its int in conflict we call until we reached at the end
+     * with each addition of new queen in each recursive call ,
+     * we check if its not in conflict if its int in conflict we call until we reached at the end
      *
      * @param n
      * @param start
@@ -65,6 +67,7 @@ public class NQueens {
      * Queen conflict if new queen is in same column as any of previous queens
      * Or if new queen is in same diagonal as previous queens
      * to CHeck diagonal behaviour we check if row-col for any queen is same
+     * we are already making sure no two queens are tro rows,
      *
      * @param slate
      * @return

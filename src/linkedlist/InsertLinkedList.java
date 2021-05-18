@@ -28,7 +28,7 @@ public class InsertLinkedList {
      * Then to find smallest element in the circular list we need two ptrs to go over all elements pred and current
      * we cant use head here because we want to check current!=head in while loop to make sure we are not going round and round in circle
      * Then once you have pointer pointing to smallest element then
-     * you can insert vale with another while loop which check if current.val< insertVal then keep moving forward
+     * you can insert value with another while loop which check if current.val< insertVal then keep moving forward
      * Once you know where newNode will go you do two things to isert in circular list
      * pred.next = newNode and newNode.next =curr
      * Also you need to handle edge case where new value is bigger than biggest or smaller that smallest seperately
@@ -60,7 +60,8 @@ public class InsertLinkedList {
             pred = pred.next;
             curr = curr.next;
         }
-        //you will have to handle this case when insert value is larger than largest value and smaller than smallest value
+        //you will have to handle this case when insert value is larger than largest value
+        // and smaller than smallest value
         if (insertVal > pred.val || insertVal < curr.val) {
             pred.next = newNode;
             newNode.next = curr;

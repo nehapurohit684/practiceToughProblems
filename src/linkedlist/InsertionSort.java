@@ -1,9 +1,5 @@
 package linkedlist;
 
-import org.w3c.dom.ls.LSException;
-
-import java.util.List;
-
 public class InsertionSort {
 
     public ListNode insertionSortList(ListNode head) {

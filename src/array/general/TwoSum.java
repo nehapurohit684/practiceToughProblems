@@ -1,8 +1,6 @@
 package array.general;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TwoSum {
 
@@ -54,4 +52,41 @@ public class TwoSum {
         }
         return -1;
     }
+
+    public List<String> summaryRanges(int[] nums) {
+
+        List<String> result = new ArrayList<>();
+
+        int start = 0;
+        int end = 0;
+        if (nums.length == 0) return result;
+        if (nums.length == 1) {
+            result.add(nums[0] + "");
+            return result;
+        }
+        for (int i = 1; i < nums.length; i++) {
+
+            if (nums[i] == nums[i - 1] + 1) {
+                continue;
+            } else {
+                end = i - 1;
+                if (start == end) result.add(nums[start] + "");
+                else result.add(nums[start] + "->" + nums[end]);
+                start = i;
+            }
+            if (i == nums.length - 1) {
+                end = i;
+                if (start == end) result.add(nums[start] + "");
+                else result.add(nums[start] + "->" + nums[end]);
+            }
+
+        }
+        if (end != nums.length - 1) {
+            end = nums.length - 1;
+            if (start == end) result.add(nums[start] + "");
+            else result.add(nums[start] + "->" + nums[end]);
+        }
+        return result;
+    }
+
 }

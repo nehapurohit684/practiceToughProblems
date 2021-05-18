@@ -16,4 +16,38 @@ public class Search2DMatrix {
         }
         return false;
     }
+
+    /**
+     * Leetcode 277
+     * Hint: In first pass find the the number to whom more ppl know
+     * in second pass check if this number know anyone if no then he is celebrity.
+     *
+     * @param n
+     * @return
+     */
+    public int findCelebrity(int n) {
+        int maxCol = n - 1;
+        int minRow = 0;
+        int celebrityCandidate = 0;
+
+        for (int i = 0; i < n; i++) {
+//            if(knows(celebrityCandidate,i)){
+//                celebrityCandidate = i;
+//            }
+        }
+        if (isCelebrity(celebrityCandidate, n)) {
+            return celebrityCandidate;
+        }
+        return -1;
+    }
+
+    boolean isCelebrity(int i, int n) {
+        for (int j = 0; j < n; j++) {
+            if (i == j) continue;
+//            if(knows(i,j) || !knows(j,i)) return false;
+        }
+        return true;
+    }
+
+
 }

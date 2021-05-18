@@ -1,7 +1,5 @@
 package linkedlist;
 
-import javax.swing.*;
-
 public class PartitionList {
 
     public ListNode partition(ListNode head, int x) {

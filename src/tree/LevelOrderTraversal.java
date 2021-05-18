@@ -326,7 +326,8 @@ public class LevelOrderTraversal {
     }
 
     /**
-     * Given the root of a binary tree, then value v and depth d, you need to add a row of nodes with value v at the given depth d.
+     * Given the root of a binary tree, then value v and depth d,
+     * you need to add a row of nodes with value v at the given depth d.
      * The root node is at depth 1
      * Hint: Do pointer manuplation at when given depth= level
      *
@@ -385,6 +386,12 @@ public class LevelOrderTraversal {
         return maxWidth;
     }
 
+    /**
+     * Given the root of a binary tree, determine if it is a complete binary tree.
+     *
+     * @param root
+     * @return
+     */
     public boolean isCompleteTree(TreeNode root) {
         Queue<NodeObject> list = new LinkedList<>();
         list.add(new NodeObject(root, 1));

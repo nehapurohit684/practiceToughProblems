@@ -1,5 +1,6 @@
 package dp;
 
+
 import java.util.Arrays;
 
 public class UniquePathsGrid {
@@ -69,4 +70,25 @@ public class UniquePathsGrid {
 //
 //
 //    }
+
+    /**
+     * 746. Min Cost Climbing Stairs
+     * Hint: AT last you have to return min of f(n-2) and f(n-1)
+     *
+     * @param cost
+     * @return
+     */
+    public int minCostClimbingStairs(int[] cost) {
+
+        int[] memo = new int[cost.length];
+        memo[0] = cost[0];
+        memo[1] = cost[1];
+
+        for (int i = 2; i < cost.length; i++) {
+            memo[i] = Math.min(memo[i - 1], memo[i - 2]) + cost[i];
+        }
+
+        return Math.min(memo[cost.length - 1], memo[cost.length - 2]);
+    }
+
 }

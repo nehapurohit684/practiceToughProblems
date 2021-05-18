@@ -20,7 +20,8 @@ public class RemoveLinkedList {
 
     /**
      * Leet code 203
-     * When value matches while going over list you delete the node and update current and pred node pointers
+     * When value matches while going over list you
+     * delete the node and update current and pred node pointers
      *
      * @param head
      * @param val
