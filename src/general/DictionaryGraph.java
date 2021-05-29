@@ -9,6 +9,27 @@ public class DictionaryGraph {
         System.out.println(find_order(words));
     }
 
+    /**
+     *
+     *
+     * You are given a dictionary of words and two strings, start and stop. All given strings have equal length.
+     *
+     * Transform string start to string stop one character per step using words from the dictionary. For example, "abc" -> "abd" is a valid transformation step because only one character is changed (c->d) while "abc" -> "axy" is not a valid step transformation because two characters are changed (b->x and c->y).
+     *
+     * You need to find the shortest possible sequence of strings (two or more) such that:
+     *
+     * First string is start.
+     * Last string is stop.
+     * Every string (except the first one) differs from the previous one by exactly one character.
+     * Every string (except, possibly, first and last ones) are in the dictionary of words.
+     * i.e. output = [start, <strings from the given dictionary>, stop] and len(output) >= 2.
+     *
+     * If two or more such sequences exist, any one of them is a correct answer.
+     *
+     * If no such sequence is there to be found, [“-1”] (a sequence of one string, “-1”) is the correct answer.
+     * @param words
+     * @return
+     */
     static String find_order(String[] words) {
 
         Map<Character, List<Character>> graph = new HashMap<>();

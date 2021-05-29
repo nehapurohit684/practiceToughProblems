@@ -53,6 +53,11 @@ public class TwoSum {
         return -1;
     }
 
+    /**
+     * return summary ranges which are in sorted order and breaks when its not sorted asked in FB
+     * @param nums
+     * @return
+     */
     public List<String> summaryRanges(int[] nums) {
 
         List<String> result = new ArrayList<>();

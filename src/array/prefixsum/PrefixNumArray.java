@@ -2,7 +2,7 @@ package array.prefixsum;
 
 public class PrefixNumArray {
     /**
-     * leetcode 303
+     * leetcode 303 : return sum from idx left to right
      * hint: Enhance the input by keeping prefix sum of each number in advance
      */
     int[] prefixSums;

@@ -2,7 +2,6 @@ package general;
 
 import javafx.util.Pair;
 
-import java.nio.file.Path;
 import java.util.*;
 
 public class BFSGraph {

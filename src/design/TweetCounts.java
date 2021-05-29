@@ -40,6 +40,11 @@ public class TweetCounts {
         return root;
     }
 
+    /**
+     * void recordTweet(String tweetName, int time) Stores the tweetName at the recorded time (in seconds).
+     * @param name
+     * @param time
+     */
     public void recordTweet(String name, int time) {
         TreeNode root = map.get(name);
         root = insert(root, time);
@@ -60,6 +65,15 @@ public class TweetCounts {
         return 1 + findCount(root.left, l, r) + findCount(root.right, l, r);
     }
 
+    /**
+     * List<Integer> getTweetCountsPerFrequency(String freq, String tweetName, int startTime, int endTime) Returns a list of integers representing the number of tweets with tweetName in each time chunk for the given period of time [startTime, endTime] (in seconds) and frequency freq.
+     * freq is one of "minute", "hour", or "day" representing a frequency of every minute, hour, or day respectively.
+     * @param freq
+     * @param name
+     * @param start
+     * @param end
+     * @return
+     */
     public List<Integer> getTweetCountsPerFrequency(String freq, String name, int start, int end) {
         int d = 0;
         TreeNode root = map.get(name);

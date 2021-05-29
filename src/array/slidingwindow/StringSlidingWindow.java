@@ -39,7 +39,8 @@ public class StringSlidingWindow {
 
     /**
      * 1456. Maximum Number of Vowels in a Substring of Given Length
-     * For chars also follow same thing initialize update the matrix by adding params from right and subtracting from left
+     * For chars also follow same thing initialize update the
+     * matrix by adding params from right and subtracting from left
      *
      * @param s
      * @param k

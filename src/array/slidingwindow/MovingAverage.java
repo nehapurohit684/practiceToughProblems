@@ -108,7 +108,8 @@ public class MovingAverage {
 
     /**
      * 1052. Grumpy Bookstore Owner
-     * Hint: For each window size X, find how many max customers are gumpy ,i.e maximum sum of fixed window X where grumpy[] =1.
+     * Hint: For each window size X, find how many max customers are gumpy ,
+     * i.e maximum sum of fixed window X where grumpy[] =1.
      *
      * @param customers
      * @param grumpy
