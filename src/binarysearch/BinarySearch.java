@@ -273,6 +273,7 @@ public class BinarySearch {
             if(nums[mid]-(nums[0]+mid)<k) start =mid+1;
             else end = mid-1;
         }
+        //end will point to last number which has totalmissing less than k so we have to find number by adding k-totalmissing to nums[end]
         int totalMissing = nums[end] -(nums[0]+end);
         return nums[end]+ (k-totalMissing);
     }
