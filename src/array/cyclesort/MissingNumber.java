@@ -146,4 +146,33 @@ public class MissingNumber {
         return list;
     }
 
+    /**
+     * 1539. Kth Missing Positive Number
+     * with binary search : start at fist index and keep finding how many numbers are missing at mid index
+     * if num of missing is < k then we need to move start to mid +1 and look in right array
+     * at the end of binary search till end index numOfmissing <k and at start num of missing is greater or eq t k
+     * ans will be arr[end] + k - numOfMissing till end = start +k
+     * @param arr
+     * @param k
+     * @return
+     */
+    public int findKthPositive(int[] arr, int k) {
+        int start =0;
+        int end = arr.length-1;
+
+        while(start<=end){
+            int mid = start + (end-start)/2;
+
+            if(arr[mid] -mid - 1< k)
+                start = mid+1;
+            else end = mid-1;
+        }
+        if(end==-1) {
+            return (arr[start]-start-1) >=k?k: arr[start] + k -(arr[start]-start-1);
+        }
+        int numMissingTillEnd  = arr[end]-end-1;
+        int kthmissing = arr[end] + k - numMissingTillEnd;
+        return kthmissing;
+    }
+
 }

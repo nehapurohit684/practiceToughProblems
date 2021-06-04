@@ -1,7 +1,6 @@
 package array.slidingwindow;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class StringSlidingWindow {
     /**
@@ -69,6 +68,8 @@ public class StringSlidingWindow {
             maxVowel = Math.max(numVowels, maxVowel);
 
         }
+
+
         return maxVowel;
     }
 
@@ -76,7 +77,8 @@ public class StringSlidingWindow {
      * 1100. Find K-Length Substrings With No Repeated Characters
      * Hint: for each fixed length window of size K see if all chars are unique
      * to determine uniqness use hashtable
-     *
+     * if Number of unique keys == k when we considered any sub array of length k
+     * means its a substring with all diff chars
      * @param S
      * @param K
      * @return
@@ -105,5 +107,52 @@ public class StringSlidingWindow {
 
         }
         return count;
+    }
+
+    /**
+     * 239. Sliding Window Maximum
+     * You are given an array of integers nums,
+     * there is a sliding window of size k which is moving from the very left of the array to the very right.
+     * You can only see the k numbers in the window. Each time the sliding window moves right by one position.
+     *
+     * Hint: PriorityQueue cof size k could be used to maintain max for window size K but tit will be logK operation
+     * Instead we want data strcuture where we can delete easily from back and front and miantain order
+     * Dequeue: When we see a number at ith position greater than last element in queue we delete all numbers smaller than this
+     * because if you encounter bigger number then all numbers smaller than it can never be max of any size array
+     * how do you maintain you find max in k window, you keep only max number until its part of window
+     * how do you make sure if the number is part of max window keep comparing the biggest number to i-k if
+     * i-k number goes from window in each iteration, if this number is biggest in dequeue then delete it from queue as well
+     * @param nums
+     * @param k
+     * @return
+     */
+    public int[] maxSlidingWindow(int[] nums, int k) {
+
+        Deque<Integer> queue = new ArrayDeque<>();
+
+        List<Integer> list = new ArrayList<>();
+
+        for(int i=0;i<k;i++){
+            while (!queue.isEmpty() && queue.getLast()<nums[i]){
+                queue.removeLast();
+            }
+            queue.addLast(nums[i]);
+        }
+        list.add(queue.peek());
+
+        for(int i=k ;i<nums.length;i++){
+
+            if(nums[i-k] == queue.getFirst()){
+                queue.removeFirst();
+            }
+            while (!queue.isEmpty() && queue.getLast()<nums[i]){
+                queue.removeLast();
+            }
+            queue.addLast(nums[i]);
+            list.add(queue.peek());
+
+        }
+
+        return list.parallelStream().mapToInt(Integer::intValue).toArray();
     }
 }

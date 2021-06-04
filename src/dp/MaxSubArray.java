@@ -6,7 +6,7 @@ public class MaxSubArray {
      * (containing at least one number)
      * which has the largest sum and return its sum.
      * Hint: At every position i, you find local max sum = max(prevSum till i-1 + nums[i] or nums[i]
-     * Thne you find globalMax by Math.max(globalMax,localMax)
+     * Then you find globalMax by Math.max(globalMax,localMax)
      *
      * @param nums
      * @return
