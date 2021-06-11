@@ -143,4 +143,50 @@ public class MovingAverage {
         return globalMaxAngry + numSatisfied;
     }
 
+    /**
+     * 480. Sliding Window Median
+     * Hint : Keep two priority queue to maintain max and min heap
+     * 
+     * @param nums
+     * @param k
+     * @return
+     */
+    public double[] medianSlidingWindow(int[] nums, int k) {
+
+        int newNums[] = Arrays.copyOf(nums,k);
+        Arrays.sort(newNums);
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+        double[] result = new double[nums.length-k+1];
+        int ptr = 0;
+        for(int i=0;i<k/2;i++){
+            maxHeap.add(newNums[i]);
+        }
+        for(int i=k/2;i<k;i++){
+            minHeap.add(newNums[i]);
+        }
+        if(k%2==0) result[ptr] = (double)((long) minHeap.peek() +maxHeap.peek()) /2;
+        else  result[ptr] = (double) minHeap.peek();
+
+
+        for(int i=k;i<nums.length;i++){
+            //elinimate i-k
+            if(maxHeap.contains(nums[i-k])) maxHeap.remove(nums[i-k]);
+            else minHeap.remove(nums[i-k]);
+
+            //add i
+            if(nums[i]<=result[ptr])
+                maxHeap.add(nums[i]);
+            else minHeap.add(nums[i]);
+
+            //make sure heaps are balanced
+            if(minHeap.size()-maxHeap.size()>1)maxHeap.add(minHeap.poll());
+            else if(maxHeap.size()-minHeap.size()>1)minHeap.add(maxHeap.poll());
+            ptr++;
+            if(k%2==0)result[ptr] = (double)((long) minHeap.peek() + maxHeap.peek()) /2;
+            else if(minHeap.size()>maxHeap.size()) result[ptr] = (double)minHeap.peek();
+            else  result[ptr] = (double)maxHeap.peek();
+        }
+        return result;
+    }
 }
