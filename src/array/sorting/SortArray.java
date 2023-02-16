@@ -13,6 +13,57 @@ public class SortArray {
         return nums;
     }
 
+    private void quickSortLomuto(int[] nums, int start, int end) {
+        //leaf level
+        if(start>=end) return;
+        //internal node worker
+        Random rand = new Random();
+        int randIdx = rand.nextInt(end-start+1) +start;
+
+        int pivotval = nums[randIdx];
+        int smallerInd = start;
+        swap(start,randIdx,nums);
+//lomuto's partition
+        for (int bigger = start+1; bigger <= end; bigger++) {
+            if(nums[bigger]<=pivotval) {
+                smallerInd++;
+                swap(smallerInd,bigger,nums);
+            }
+        }
+        swap(start,smallerInd,nums);
+        quickSort(nums,start,smallerInd-1);
+        quickSort(nums,smallerInd+1,end);
+    }
+
+    private void quickSortHoare(int[] nums, int start, int end) {
+        //leaf level
+        if(start>=end) return;
+        //internal node worker
+        Random rand = new Random();
+        int randIdx = rand.nextInt(end-start+1) +start;
+
+        int pivotval = nums[randIdx];
+
+        swap(start,randIdx,nums);
+        int smallerInd = start+1;
+        int biggerInd = end;
+//Hoare's partition
+       while(smallerInd<=biggerInd){
+           if(nums[smallerInd]<pivotval)
+               smallerInd++;
+           else if(nums[biggerInd]>pivotval)
+               biggerInd--;
+           else {
+               swap(smallerInd, biggerInd, nums);
+               smallerInd++;
+               biggerInd--;
+           }
+       }
+        swap(start,biggerInd,nums);
+        quickSort(nums,start,biggerInd-1);
+        quickSort(nums,biggerInd+1,end);
+    }
+
     private void quickSort(int[] nums, int start, int end) {
 
         Random rand = new Random();
@@ -21,7 +72,7 @@ public class SortArray {
         int smallInd = start;
         int pivotVal = nums[pivotInd];
         swap(smallInd, pivotInd, nums);
-        for (int i = start + 1; i < nums.length; i++) {
+        for (int i = start + 1; i <=end; i++) {
             if (nums[i] < pivotVal) {
                 smallInd++;
                 swap(smallInd, i, nums);

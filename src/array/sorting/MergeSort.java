@@ -16,7 +16,7 @@ public class MergeSort {
         list.add(7);
         list.add(9);
         list.add(12);
-       // System.out.println(merge_sort(list));
+       System.out.println(merge_sort(list));
         merger_first_into_second(array1,array2);
 
     }

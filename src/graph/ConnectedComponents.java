@@ -5,7 +5,7 @@ import java.util.*;
 public class ConnectedComponents {
 
     public static int countComponents(int n, int[][] edges) {
-        //Build the graph
+        //Build the graph https://www.softwaretestinghelp.com/java-graph-tutorial/#Adjacency_List
         Map<Integer, List<Integer>> graph = new HashMap<>();
         boolean[] visited = new boolean[n];
         Arrays.fill(visited, false);

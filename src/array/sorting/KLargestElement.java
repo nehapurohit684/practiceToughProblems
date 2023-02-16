@@ -1,7 +1,6 @@
 package array.sorting;
 
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.*;
 
 public class KLargestElement {
 
@@ -18,6 +17,16 @@ public class KLargestElement {
         return pq.poll();
     }
 
+    /**
+     * Given an integer array nums and an integer k, return the kth largest element in the array.
+     *
+     * Note that it is the kth largest element in the sorted order, not the kth distinct element.
+     *
+     * You must solve it in O(n) time complexity.
+     * @param nums
+     * @param k
+     * @return
+     */
     public int findKthLargestQ(int[] nums, int k) {
         return partition(nums, 0, nums.length - 1, nums.length - k);
     }
@@ -72,5 +81,32 @@ public class KLargestElement {
         }
         return pq.peek();
     }
+    /**
+     * A distinct string is a string that is present only once in an array.
+     *
+     * Given an array of strings arr, and an integer k, return the kth distinct string present in arr.
+     * If there are fewer than k distinct strings, return an empty string "".
+     *
+     * Note that the strings are considered in the order in which they appear in the array.
+     * @param arr
+     * @param k
+     * @return
+     */
+    public String kthDistinct(String[] arr, int k) {
 
+        Map<String,Integer> map = new LinkedHashMap();
+
+        for(String s: arr){
+            map.put(s,map.getOrDefault(s,0)+1);
+
+        }
+        List<String> stringsList = new LinkedList<>();
+
+        for(Map.Entry<String,Integer> entry  : map.entrySet()){
+            if(entry.getValue()==1) stringsList.add(entry.getKey());
+        }
+
+        return stringsList.size()<k ? "":stringsList.get(k);
+
+    }
 }
